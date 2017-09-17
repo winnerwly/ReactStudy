@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React-Template</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/react.min.js"></script>
+    <script src="../js/react-dom.min.js"></script>
+    <script src="../js/browser.min.js"></script>
+</head>
+<body>
+	<!-- 容器 -->
+	<div id="container"></div>
+<script type="text/babel">
+	var div1=document.getElementById('container');
+	
+	
+	//创建一个组件
+	var Demo = React.createClass({
+		getInitialState(){
+			return {
+				checked:true
+			}
+		},
+		handleChange(){
+			this.setState({
+				checked:!this.state.checked
+			})
+//			console.log(this.state.checked)
+		},
+		render(){
+			var msg=''
+			if(this.state.checked){
+				msg='点击了'
+			}else{
+				msg='没有点击了'
+			}
+			return (<div>
+				<input onChange={this.handleChange} type="checkbox" defaultChecked={this.state.checked}/>
+				<h3>{msg}</h3>
+			</div>);
+		}
+	})
+	// 在调用的时候,有且仅有一个跟标签
+	// 在调用的时候,如果想要多次调用组件,那么也要给组件一个跟标签
+	ReactDOM.render(
+		(<div className = "board">
+			<Demo>张三</Demo>
+		</div>),
+		div1
+	)
+</script>
+</body>
+</html>
